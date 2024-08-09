@@ -123,10 +123,10 @@ public class GlobalExceptionHandler {
      * @return ResponseEntity with CustomError containing details of the exception.
      */
     @ExceptionHandler(ExchangeNotFoundException.class)
-    protected ResponseEntity<Object> handleExchangeNotFoundException(final ExchangeNotFoundException ex) {
+    protected ResponseEntity<CustomError> handleExchangeNotFoundException(final ExchangeNotFoundException ex) {
         CustomError customError = CustomError.builder()
                 .httpStatus(HttpStatus.NOT_FOUND)
-                .header(CustomError.Header.API_ERROR.getName())
+                .header(CustomError.Header.NOT_FOUND.getName())
                 .message(ex.getMessage())
                 .build();
 
