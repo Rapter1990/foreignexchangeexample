@@ -9,6 +9,11 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
+/**
+ * A base class for domain models that includes common fields and functionality.
+ * This class is intended to be used as a superclass for other domain models
+ * that require a creation timestamp.
+ */
 @Getter
 @Setter
 @SuperBuilder

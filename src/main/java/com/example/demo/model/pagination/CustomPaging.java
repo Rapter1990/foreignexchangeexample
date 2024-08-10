@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+/**
+ * Represents a custom pagination configuration used for specifying the page number and page size.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,6 +23,11 @@ public class CustomPaging {
     @Min(value = 1, message = "Page size must be bigger than 0")
     private Integer pageSize;
 
+    /**
+     * Gets the page number adjusted to a 0-based index used by many pagination implementations.
+     *
+     * @return The current page number adjusted to a 0-based index.
+     */
     public Integer getPageNumber() {
         return pageNumber - 1;
     }

@@ -5,6 +5,11 @@ import org.springframework.data.domain.Page;
 
 import java.util.List;
 
+/**
+ * Represents a custom pagination response containing details about the paginated data.
+ *
+ * @param <T> The type of the elements contained in the page.
+ */
 @Getter
 @Setter
 @Builder
@@ -22,7 +27,15 @@ public class CustomPage<T> {
 
     private Integer totalPageCount;
 
-
+    /**
+     * Creates a {@link CustomPage} instance from a {@link List} of domain models and a {@link Page} object.
+     *
+     * @param <C> The type of the elements in the custom page.
+     * @param <X> The type of the elements in the original page.
+     * @param domainModels The list of items to be included in the custom page.
+     * @param page The original page object containing pagination information.
+     * @return A new {@link CustomPage} instance populated with the provided data.
+     */
     public static <C, X> CustomPage<C> of(final List<C> domainModels, final Page<X> page) {
         return CustomPage.<C>builder()
                 .content(domainModels)
