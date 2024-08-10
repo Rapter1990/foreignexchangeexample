@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  foreignschangeexample:
+    image: 'foreignschangeexample:latest'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "1331:1331"
+    environment:
+      - "EXCHANGE_API_API_KEY=${EXCHANGE_API_API_KEY}"
+      - "TZ=Europe/Istanbul"
+    volumes:
+      - ./logs:/app/logs

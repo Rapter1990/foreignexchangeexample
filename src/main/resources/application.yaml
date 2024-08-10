@@ -10,6 +10,7 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+    time-zone: Europe/Istanbul
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
@@ -31,7 +32,7 @@ exchange-api:
   api-key: ${EXCHANGE_API_API_KEY:default-key}
   api-call-limit: 60
   cache-name: exchanges
-  cache-ttl: 10000
+  cache-ttl: 10000 # 10 seconds
 
 
 # SWAGGER
