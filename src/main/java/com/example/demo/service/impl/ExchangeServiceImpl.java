@@ -4,6 +4,8 @@ import com.example.demo.exception.ExchangeNotFoundException;
 import com.example.demo.model.dto.response.ExchangeResponse;
 import com.example.demo.service.ExchangeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,6 +17,7 @@ import static com.example.demo.utils.Constants.EXCHANGE_API_BASE_URL;
 
 @Service
 @RequiredArgsConstructor
+@CacheConfig(cacheNames = "exchanges")
 public class ExchangeServiceImpl implements ExchangeService {
 
     private final RestTemplate restTemplate;

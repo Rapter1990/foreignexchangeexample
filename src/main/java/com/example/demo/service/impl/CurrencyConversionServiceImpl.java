@@ -10,10 +10,13 @@ import com.example.demo.repository.ConvertRepository;
 import com.example.demo.service.CurrencyConversionService;
 import com.example.demo.service.ExchangeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@CacheConfig(cacheNames = "exchanges")
 public class CurrencyConversionServiceImpl implements CurrencyConversionService {
 
     private final ConvertRepository convertRepository;
@@ -27,6 +30,7 @@ public class CurrencyConversionServiceImpl implements CurrencyConversionService 
             ConvertEntityToConvertMapper.initialize();
 
     @Override
+    @Cacheable(key = "'CurrencyConversionCache::' + #request.from + '-' + #request.to + '-' + #request.amount")
     public Convert convertCurrency(final ConvertRequest request) {
 
         ExchangeResponse exchangeResponse = exchangeService.getExchangeRateWithAmount(

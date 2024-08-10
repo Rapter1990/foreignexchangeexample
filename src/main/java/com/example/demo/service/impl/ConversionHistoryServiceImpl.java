@@ -7,6 +7,8 @@ import com.example.demo.model.mapper.ConvertEntityToConvertMapper;
 import com.example.demo.repository.ConvertRepository;
 import com.example.demo.service.ConversionHistoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@CacheConfig(cacheNames = "exchanges")
 public class ConversionHistoryServiceImpl implements ConversionHistoryService {
 
     private final ConvertRepository convertRepository;
@@ -24,6 +27,7 @@ public class ConversionHistoryServiceImpl implements ConversionHistoryService {
     private final ConvertEntityToConvertMapper convertEntityToConvertMapper = ConvertEntityToConvertMapper.initialize();
 
     @Override
+    @Cacheable(key = "'ConversionHistoryCache::' + #conversionHistoryFilterRequest.transactionId + '-' + #conversionHistoryFilterRequest.date")
     public Page<Convert> getConversionHistory(ConversionHistoryFilterRequest conversionHistoryFilterRequest) {
         Specification<ConvertEntity> spec = conversionHistoryFilterRequest.toSpecification();
         Pageable pageable = conversionHistoryFilterRequest.toPageable();

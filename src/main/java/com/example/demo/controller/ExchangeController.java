@@ -16,24 +16,31 @@ import com.example.demo.service.ConversionHistoryService;
 import com.example.demo.service.CurrencyConversionService;
 import com.example.demo.service.ExchangeRateService;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 @Validated
 public class ExchangeController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ExchangeController.class);
 
     private final CurrencyConversionService currencyConversionService;
 
@@ -77,6 +84,13 @@ public class ExchangeController {
 
         CustomPage<ConvertHistoryResponse> customPage = CustomPage.of(responseList, corvertPage);
         return ResponseEntity.ok(customPage);
+    }
+
+    @CacheEvict(allEntries = true, cacheNames = "${exchange-api.cache-name}")
+    @PostConstruct
+    @Scheduled(fixedRateString = "${exchange-api.cache-ttl}")
+    public void clearCache() {
+        logger.info("Caches are cleared");
     }
 
 }

@@ -7,12 +7,15 @@ import com.example.demo.model.mapper.ExchangeResponseToExchangeRateMapper;
 import com.example.demo.service.ExchangeRateService;
 import com.example.demo.service.ExchangeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
+@CacheConfig(cacheNames = "exchanges")
 public class ExchangeRateServiceImpl implements ExchangeRateService {
 
     private final ExchangeService exchangeService;
@@ -23,6 +26,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
             ExchangeResponseToExchangeRateMapper.initialize();
 
     @Override
+    @Cacheable(key = "'ExchangeRateCache::' + #exchangeRateRequest.from + '-' + #exchangeRateRequest.to")
     public ExchangeRate exchangeRate(ExchangeRateRequest exchangeRateRequest) {
 
         ExchangeResponse exchangeResponse = exchangeService.getExchangeRateWithAmount(
