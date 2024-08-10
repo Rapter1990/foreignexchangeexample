@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+/**
+ * Implementation of the {@link ExchangeRateService} interface.
+ * Provides methods to retrieve exchange rates using cached data.
+ */
 @Service
 @RequiredArgsConstructor
 @CacheConfig(cacheNames = "exchanges")
@@ -25,6 +29,12 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
     private final ExchangeResponseToExchangeRateMapper exchangeResponseToExchangeRateMapper =
             ExchangeResponseToExchangeRateMapper.initialize();
 
+    /**
+     * Retrieves the exchange rate between two currencies based on the provided request.
+     *
+     * @param exchangeRateRequest An {@link ExchangeRateRequest} containing the currencies to convert between.
+     * @return An {@link ExchangeRate} object containing the exchange rate.
+     */
     @Override
     @Cacheable(key = "'ExchangeRateCache::' + #exchangeRateRequest.from + '-' + #exchangeRateRequest.to")
     public ExchangeRate exchangeRate(ExchangeRateRequest exchangeRateRequest) {

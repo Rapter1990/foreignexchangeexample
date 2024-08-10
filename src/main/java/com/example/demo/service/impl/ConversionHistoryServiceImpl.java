@@ -17,6 +17,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implementation of the {@link ConversionHistoryService} interface.
+ * Provides functionality for retrieving and paginating conversion history records.
+ * Caches the results to improve performance and reduce redundant database queries.
+ */
 @Service
 @RequiredArgsConstructor
 @CacheConfig(cacheNames = "exchanges")
@@ -26,6 +31,14 @@ public class ConversionHistoryServiceImpl implements ConversionHistoryService {
 
     private final ConvertEntityToConvertMapper convertEntityToConvertMapper = ConvertEntityToConvertMapper.initialize();
 
+    /**
+     * Retrieves a paginated list of currency conversion records based on the specified filter criteria.
+     * The method applies the filter criteria to query the repository and fetch the relevant conversion records.
+     * It then maps the retrieved entities to {@link Convert} objects and returns them in a paginated format.
+     *
+     * @param conversionHistoryFilterRequest A {@link ConversionHistoryFilterRequest} object containing the filter criteria and pagination details.
+     * @return A {@link Page} of {@link Convert} objects representing the paginated conversion history.
+     */
     @Override
     @Cacheable(key = "'ConversionHistoryCache::' + #conversionHistoryFilterRequest.transactionId + '-' + #conversionHistoryFilterRequest.date")
     public Page<Convert> getConversionHistory(ConversionHistoryFilterRequest conversionHistoryFilterRequest) {

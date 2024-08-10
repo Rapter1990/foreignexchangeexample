@@ -14,6 +14,11 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of the {@link CurrencyConversionService} interface.
+ * Provides functionality for converting currencies by fetching exchange rates and saving conversion records.
+ * Caches conversion results to enhance performance and avoid redundant calculations.
+ */
 @Service
 @RequiredArgsConstructor
 @CacheConfig(cacheNames = "exchanges")
@@ -29,6 +34,15 @@ public class CurrencyConversionServiceImpl implements CurrencyConversionService 
     private final ConvertEntityToConvertMapper convertEntityToConvertMapper =
             ConvertEntityToConvertMapper.initialize();
 
+    /**
+     * Converts the specified amount from one currency to another.
+     * This method retrieves the exchange rate from the {@link ExchangeService}, maps the response to a
+     * {@link ConvertEntity} object, saves the conversion record to the repository, and then maps the saved
+     * entity to a {@link Convert} object for return.
+     *
+     * @param request A {@link ConvertRequest} object containing the source currency, target currency, and the amount to convert.
+     * @return A {@link Convert} object representing the result of the currency conversion.
+     */
     @Override
     @Cacheable(key = "'CurrencyConversionCache::' + #request.from + '-' + #request.to + '-' + #request.amount")
     public Convert convertCurrency(final ConvertRequest request) {
