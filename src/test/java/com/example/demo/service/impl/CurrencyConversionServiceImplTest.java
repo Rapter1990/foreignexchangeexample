@@ -9,6 +9,7 @@ import com.example.demo.model.mapper.ConvertEntityToConvertMapper;
 import com.example.demo.model.mapper.ExchangeResponseToConvertEntityMapper;
 import com.example.demo.repository.ConvertRepository;
 import com.example.demo.service.ExchangeService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -20,6 +21,13 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Unit test class for {@link CurrencyConversionServiceImpl}.
+ * This class contains test cases to verify the behavior of the
+ * {@link CurrencyConversionServiceImpl} class, specifically focusing on
+ * the {@link CurrencyConversionServiceImpl#convertCurrency(ConvertRequest)}
+ * method.
+ */
 class CurrencyConversionServiceImplTest extends AbstractBaseServiceTest {
 
     @InjectMocks
@@ -38,7 +46,8 @@ class CurrencyConversionServiceImplTest extends AbstractBaseServiceTest {
             ConvertEntityToConvertMapper.initialize();
 
     @Test
-    public void testConvertCurrency() {
+    @DisplayName("Given ConvertRequest - When Convert Currency - Then Return Correct Converted Data")
+    void givenConvertRequest_whenConvertCurrency_thenReturnCorrectConvertedData() {
 
         // Given
         ConvertRequest request = ConvertRequest.builder()

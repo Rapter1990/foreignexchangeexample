@@ -7,6 +7,7 @@ import com.example.demo.model.dto.request.ExchangeRateRequest;
 import com.example.demo.model.dto.response.ExchangeResponse;
 import com.example.demo.model.mapper.ExchangeResponseToExchangeRateMapper;
 import com.example.demo.service.ExchangeService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -17,6 +18,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Unit test class for {@link ExchangeRateServiceImpl}.
+ *
+ * This class contains test cases for verifying the behavior of the
+ * {@link ExchangeRateServiceImpl} class, specifically focusing on
+ * the {@link ExchangeRateServiceImpl#exchangeRate(ExchangeRateRequest)}
+ * method.
+ */
 class ExchangeRateServiceImplTest extends AbstractBaseServiceTest {
 
     @InjectMocks
@@ -29,7 +38,8 @@ class ExchangeRateServiceImplTest extends AbstractBaseServiceTest {
             ExchangeResponseToExchangeRateMapper.initialize();
 
     @Test
-    public void testExchangeRate() {
+    @DisplayName("Given ExchangeRateRequest - When Exchange Rate is Requested - Then Return Correct Exchange Rate")
+    void givenExchangeRateRequest_whenExchangeRateRequested_thenReturnCorrectExchangeRate() {
 
         // Given
         ExchangeRateRequest request = ExchangeRateRequest.builder()
@@ -61,7 +71,8 @@ class ExchangeRateServiceImplTest extends AbstractBaseServiceTest {
     }
 
     @Test
-    public void testExchangeRate_ExchangeNotFound() {
+    @DisplayName("Given ExchangeRateRequest - When Exchange Rate is Not Found - Then Throw ExchangeNotFoundException")
+    void givenExchangeRateRequest_whenExchangeRateNotFound_thenThrowExchangeNotFoundException() {
 
         // Given
         ExchangeRateRequest request = ExchangeRateRequest.builder()

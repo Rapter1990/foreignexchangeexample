@@ -7,6 +7,7 @@ import com.example.demo.model.entity.ConvertEntity;
 import com.example.demo.model.mapper.ConvertEntityToConvertMapper;
 import com.example.demo.model.pagination.CustomPaging;
 import com.example.demo.repository.ConvertRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -28,6 +29,14 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Unit test class for {@link ConversionHistoryServiceImpl}.
+ *
+ * This class contains test cases to verify the behavior of the
+ * {@link ConversionHistoryServiceImpl} class, specifically focusing on
+ * the {@link ConversionHistoryServiceImpl#getConversionHistory(ConversionHistoryFilterRequest)}
+ * method.
+ */
 class ConversionHistoryServiceImplTest extends AbstractBaseServiceTest {
 
     @InjectMocks
@@ -39,7 +48,8 @@ class ConversionHistoryServiceImplTest extends AbstractBaseServiceTest {
     private final ConvertEntityToConvertMapper convertEntityToConvertMapper = ConvertEntityToConvertMapper.initialize();
 
     @Test
-    void testGetConversionHistory() {
+    @DisplayName("Given ConversionHistoryFilterRequest - When Get Conversion History - Then Return Correct Page of Conversion Data")
+    void givenConversionHistoryFilterRequest_whenGetConversionHistory_thenReturnCorrectPageOfConversionData() {
 
         // Given
         LocalDateTime now = LocalDateTime.now();

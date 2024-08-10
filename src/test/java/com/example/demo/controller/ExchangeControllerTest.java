@@ -17,7 +17,11 @@ import com.example.demo.model.pagination.CustomPaging;
 import com.example.demo.service.ConversionHistoryService;
 import com.example.demo.service.CurrencyConversionService;
 import com.example.demo.service.ExchangeRateService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -39,7 +43,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
+/**
+ * Integration tests for the {@link ExchangeController}.
+ * This class extends {@link AbstractRestControllerTest} to leverage Spring's MockMvc and ObjectMapper for testing
+ * the RESTful endpoints of the ExchangeController. It uses Mockito to mock service dependencies and verify interactions.
+ * Each test case ensures that the controller's endpoints respond as expected based on predefined inputs and mock service behaviors.
+ */
 class ExchangeControllerTest extends AbstractRestControllerTest {
 
     @MockBean
@@ -61,7 +70,8 @@ class ExchangeControllerTest extends AbstractRestControllerTest {
             ConvertToConvertHistoryResponseMapper.initialize();
 
     @Test
-    public void testConvertCurrency() throws Exception {
+    @DisplayName("Given ExchangeRateRequest - When ConvertCurrency - Then Return ExchangeRateResponse")
+    void givenExchangeRateRequest_whenConvertCurrency_thenReturnExchangeRateResponse() throws Exception {
 
         // Given
         ExchangeRateRequest request = ExchangeRateRequest.builder()
@@ -95,7 +105,8 @@ class ExchangeControllerTest extends AbstractRestControllerTest {
     }
 
     @Test
-    public void testExchangeRate() throws Exception {
+    @DisplayName("Given ConvertRequest - When ExchangeRate - Then Return ConvertResponse")
+    void givenConvertRequest_whenExchangeRate_thenReturnConvertResponse() throws Exception {
 
         // Given
         ConvertRequest request = ConvertRequest.builder()
@@ -137,7 +148,8 @@ class ExchangeControllerTest extends AbstractRestControllerTest {
     }
 
     @Test
-    public void testGetConversionHistory() throws Exception {
+    @DisplayName("Given ConversionHistoryFilterRequest - When GetConversionHistory - Then Return CustomPage With ConvertHistoryResponse")
+    void givenConversionHistoryFilterRequest_whenGetConversionHistory_thenReturnCustomPageWithConvertHistoryResponse() throws Exception {
 
         // Given
         ConversionHistoryFilterRequest conversionHistoryFilterRequest = ConversionHistoryFilterRequest.builder()

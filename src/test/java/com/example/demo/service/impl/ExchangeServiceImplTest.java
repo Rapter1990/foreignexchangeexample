@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.example.demo.base.AbstractBaseServiceTest;
 import com.example.demo.exception.ExchangeNotFoundException;
 import com.example.demo.model.dto.response.ExchangeResponse;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -18,6 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Unit test class for {@link ExchangeServiceImpl}.
+ * This class contains test cases for verifying the behavior of the
+ * {@link ExchangeServiceImpl} class, specifically focusing on methods
+ * related to fetching exchange rates and constructing URLs for API calls.
+ */
 class ExchangeServiceImplTest extends AbstractBaseServiceTest {
 
     @InjectMocks
@@ -27,7 +34,8 @@ class ExchangeServiceImplTest extends AbstractBaseServiceTest {
     private RestTemplate restTemplate;
 
     @Test
-    public void testGetExchangeRateWithAmount() {
+    @DisplayName("Given Valid Parameters - When Exchange Rate is Requested - Then Return Correct Exchange Rate")
+    public void givenValidParameters_whenExchangeRateRequested_thenReturnCorrectExchangeRate() {
 
         // Given
         String from = "USD";
@@ -46,10 +54,9 @@ class ExchangeServiceImplTest extends AbstractBaseServiceTest {
         when(restTemplate.getForObject(expectedUrl, ExchangeResponse.class))
                 .thenReturn(mockResponse);
 
-        // When
+        // Then
         ExchangeResponse response = exchangeService.getExchangeRateWithAmount(from, to, amount);
 
-        // Then
         assertEquals(mockResponse, response);
 
         // Verify
@@ -58,7 +65,8 @@ class ExchangeServiceImplTest extends AbstractBaseServiceTest {
     }
 
     @Test
-    public void testGetExchangeRateWithAmount_ExchangeNotFound() {
+    @DisplayName("Given Valid Parameters - When Exchange Rate is Not Found - Then Throw ExchangeNotFoundException")
+    public void givenValidParameters_whenExchangeRateNotFound_thenThrowExchangeNotFoundException() {
 
         // Given
         String from = "USD";
@@ -83,7 +91,8 @@ class ExchangeServiceImplTest extends AbstractBaseServiceTest {
     }
 
     @Test
-    public void testGetExchangeUrl() {
+    @DisplayName("Given Parameters - When Get Exchange URL is Invoked - Then Return Correct URL")
+    public void givenParameters_whenGetExchangeUrlIsInvoked_thenReturnCorrectUrl() {
 
         // Given
         String from = "USD";

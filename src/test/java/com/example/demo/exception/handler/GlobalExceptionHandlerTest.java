@@ -6,6 +6,7 @@ import com.example.demo.exception.error.CustomError;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Path;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.http.HttpStatus;
@@ -24,13 +25,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * Unit test class for {@link GlobalExceptionHandler}.
+ * This class contains tests for handling various exceptions and ensuring that
+ * the proper error responses are returned by the exception handler.
+ */
 class GlobalExceptionHandlerTest extends AbstractRestControllerTest {
 
     @InjectMocks
     private GlobalExceptionHandler globalExceptionHandler;
 
     @Test
-    void givenMethodArgumentNotValidException_whenHandleMethodArgumentNotValid_thenRespondWithBadRequest() {
+    @DisplayName("Given MethodArgumentNotValidException - When HandleMethodArgumentNotValid - Then Return RespondWithBadRequest")
+    void givenMethodArgumentNotValidException_whenHandleMethodArgumentNotValid_thenReturnRespondWithBadRequest() {
 
         // Given
         BindingResult bindingResult = mock(BindingResult.class);
@@ -62,7 +69,8 @@ class GlobalExceptionHandlerTest extends AbstractRestControllerTest {
     }
 
     @Test
-    void givenMethodArgumentNotValidException_whenHandleMethodArgumentNotValid_withObjectError_thenRespondWithBadRequest() {
+    @DisplayName("Given MethodArgumentNotValidException - When HandleMethodArgumentNotValidWithObjectError - Return RespondWithBadRequest")
+    void givenMethodArgumentNotValidException_whenHandleMethodArgumentNotValid_withObjectError_thenReturnRespondWithBadRequest() {
 
         // Given
         BindingResult bindingResult = mock(BindingResult.class);
@@ -94,7 +102,8 @@ class GlobalExceptionHandlerTest extends AbstractRestControllerTest {
     }
 
     @Test
-    void givenConstraintViolationException_whenHandlePathVariableErrors_thenRespondWithBadRequest() {
+    @DisplayName("Given ConstraintViolationException - When HandlePathVariableErrors - Return RespondWithBadRequest")
+    void givenConstraintViolationException_whenHandlePathVariableErrors_thenReturnRespondWithBadRequest() {
 
         // Given
         ConstraintViolation<String> mockViolation = mock(ConstraintViolation.class);
@@ -135,7 +144,8 @@ class GlobalExceptionHandlerTest extends AbstractRestControllerTest {
     }
 
     @Test
-    void givenRuntimeException_whenHandleRuntimeException_thenRespondWithNotFound() {
+    @DisplayName("Given RuntimeException - When HandleRuntimeException - Return RespondWithNotFound")
+    void givenRuntimeException_whenHandleRuntimeException_thenReturnRespondWithNotFound() {
 
         // Given
         RuntimeException ex = new RuntimeException("Runtime exception message");
@@ -158,7 +168,8 @@ class GlobalExceptionHandlerTest extends AbstractRestControllerTest {
     }
 
     @Test
-    void givenPermissionNotFoundException_whenHandleExchangeNotFoundException_thenRespondWithNotFound() {
+    @DisplayName("Given PermissionNotFoundException - When HandleExchangeNotFoundException - Return RespondWithNotFound")
+    void givenPermissionNotFoundException_whenHandleExchangeNotFoundException_thenReturnRespondWithNotFound() {
 
         // Given
         ExchangeNotFoundException ex = new ExchangeNotFoundException("Exchange not found message");
