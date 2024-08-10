@@ -4,6 +4,11 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
+/**
+ * Represents the response containing details of a currency conversion.
+ * This class encapsulates the results of a currency conversion operation,
+ * including the transaction ID and the converted amount.
+ */
 @Getter
 @Setter
 @Builder

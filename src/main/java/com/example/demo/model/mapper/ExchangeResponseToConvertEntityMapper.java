@@ -1,11 +1,16 @@
 package com.example.demo.model.mapper;
 
+import com.example.demo.model.Convert;
+import com.example.demo.model.dto.response.ConvertHistoryResponse;
 import com.example.demo.model.dto.response.ExchangeResponse;
 import com.example.demo.model.entity.ConvertEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+/**
+ * Mapper interface for converting between {@link ExchangeResponse} and {@link ConvertEntity}.
+ */
 @Mapper
 public interface ExchangeResponseToConvertEntityMapper extends BaseMapper<ExchangeResponse, ConvertEntity> {
 

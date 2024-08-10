@@ -1,5 +1,11 @@
 package com.example.demo.model.enums;
 
+/**
+ * Enum representing various currencies with their corresponding descriptions.
+ * This enum defines a set of currencies using their ISO 4217 currency codes and provides
+ * a description for each currency. The currency codes are standardized three-letter codes,
+ * while the descriptions provide human-readable names for the currencies.
+ */
 public enum EnumCurrency {
 
     AED("United Arab Emirates Dirham"),
@@ -174,6 +180,11 @@ public enum EnumCurrency {
 
     private final String description;
 
+    /**
+     * Constructor for {@link EnumCurrency}.
+     *
+     * @param description The description of the currency.
+     */
     EnumCurrency(String description) {
         this.description = description;
     }

@@ -11,6 +11,13 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
+/**
+ * Represents a request to convert an amount from one currency to another.
+ * This class encapsulates the details required for a currency conversion request,
+ * including the source currency, target currency, and the amount to be converted.
+ * It includes validation annotations to ensure that the currency codes and amount
+ * meet specific criteria.
+ */
 @Getter
 @Setter
 @Builder

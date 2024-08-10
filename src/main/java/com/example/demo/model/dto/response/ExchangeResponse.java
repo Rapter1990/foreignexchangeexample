@@ -9,6 +9,12 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * Represents the response from an exchange rate service.
+ * This class encapsulates the details returned by an API that provides exchange rates,
+ * including the success status, query details, information about the quote, the result,
+ * and the timestamp of the response.
+ */
 @Getter
 @Setter
 @Builder
@@ -26,6 +32,11 @@ public class ExchangeResponse {
     @JsonProperty("timestamp")
     private LocalDateTime timestamp;
 
+    /**
+     * Represents the details of the query made to retrieve exchange rates.
+     * This static inner class contains information about the source and target currencies,
+     * as well as the amount to be converted.
+     */
     @Getter
     @Setter
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -35,10 +46,15 @@ public class ExchangeResponse {
         private BigDecimal amount;
     }
 
+    /**
+     * Contains information about the exchange rate quote.
+     * This static inner class includes details such as the rate at which one currency is converted to another.
+     */
     @Getter
     @Setter
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Info {
         private BigDecimal quote;
     }
+
 }
