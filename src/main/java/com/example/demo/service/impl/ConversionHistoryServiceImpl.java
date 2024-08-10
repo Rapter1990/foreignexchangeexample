@@ -21,7 +21,7 @@ public class ConversionHistoryServiceImpl implements ConversionHistoryService {
 
     private final ConvertRepository convertRepository;
 
-    private final ConvertEntityToConvertMapper convertMapper = ConvertEntityToConvertMapper.initialize();
+    private final ConvertEntityToConvertMapper convertEntityToConvertMapper = ConvertEntityToConvertMapper.initialize();
 
     @Override
     public Page<Convert> getConversionHistory(ConversionHistoryFilterRequest conversionHistoryFilterRequest) {
@@ -29,7 +29,7 @@ public class ConversionHistoryServiceImpl implements ConversionHistoryService {
         Pageable pageable = conversionHistoryFilterRequest.toPageable();
         Page<ConvertEntity> entityPage = convertRepository.findAll(spec, pageable);
         List<Convert> convertList = entityPage.getContent().stream()
-                .map(convertMapper::map)
+                .map(convertEntityToConvertMapper::map)
                 .toList();
 
         return new PageImpl<>(convertList, pageable, entityPage.getTotalElements());

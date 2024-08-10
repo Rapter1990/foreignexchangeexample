@@ -66,7 +66,7 @@ public class ExchangeController {
 
     @RateLimiter(name = "basic")
     @PostMapping("/history")
-    public ResponseEntity<CustomPage<ConvertHistoryResponse>> getConversionHistory(
+    public ResponseEntity<CustomPage<ConvertHistoryResponse>> getConversionHistory (
             @RequestBody ConversionHistoryFilterRequest request) {
 
         Page<Convert> corvertPage = conversionHistoryService.getConversionHistory(request);

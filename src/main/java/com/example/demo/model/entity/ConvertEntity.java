@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @SuperBuilder
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
