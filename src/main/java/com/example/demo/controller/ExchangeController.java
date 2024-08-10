@@ -146,7 +146,7 @@ public class ExchangeController {
      * Clears the cache entries periodically.
      * This method is scheduled to run at a fixed rate and clears all cache entries.
      */
-    @CacheEvict(allEntries = true, cacheNames = "${exchange-api.cache-name}")
+    @CacheEvict(allEntries = true, cacheNames = {"exchanges"})
     @PostConstruct
     @Scheduled(fixedRateString = "${exchange-api.cache-ttl}")
     public void clearCache() {
