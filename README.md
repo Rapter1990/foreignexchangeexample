@@ -76,6 +76,9 @@ Endpoints Summary
 - CI/CD (Github Actions)
 - Postman
 - H2 Database (In-Memory)
+- Spring Boot Actuator
+- Spring Cache
+- Resilience4j (Rate Limiter)
 
 ### Postman
 
