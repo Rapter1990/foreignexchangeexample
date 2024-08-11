@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "048f8a42-152b-4d10-90e3-198e54029088",
+		"name": "Foreign Exchange Openpayd",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5570426"
+	},
+	"item": [
+		{
+			"name": "Exchange Rate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from\" : \"USD\",\r\n    \"to\" : \"TRY\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1331/api/v1/exchange-rate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1331",
+					"path": [
+						"api",
+						"v1",
+						"exchange-rate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Currency Conversion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from\" : \"USD\",\r\n    \"to\" : \"EUR\",\r\n    \"amount\" : 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1331/api/v1/convert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1331",
+					"path": [
+						"api",
+						"v1",
+						"convert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Conversion History (Pagination)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pagination\": {\r\n        \"pageNumber\": 1,\r\n        \"pageSize\": 10\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1331/api/v1/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1331",
+					"path": [
+						"api",
+						"v1",
+						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Conversion History (TransactionId, Date and Pagination)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transactionId\": \"137b85b4-76bb-42b4-a800-69d2833c43e4\",\r\n    \"date\": \"2024-08-11\",\r\n    \"pagination\": {\r\n        \"pageNumber\": 1,\r\n        \"pageSize\": 10\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1331/api/v1/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1331",
+					"path": [
+						"api",
+						"v1",
+						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Conversion History (Date and Pagination)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2024-08-11\",\r\n    \"pagination\": {\r\n        \"pageNumber\": 1,\r\n        \"pageSize\": 10\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1331/api/v1/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1331",
+					"path": [
+						"api",
+						"v1",
+						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Conversion History (TransactionId and Pagination)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pagination\": {\r\n        \"pageNumber\": 1,\r\n        \"pageSize\": 10\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1331/api/v1/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1331",
+					"path": [
+						"api",
+						"v1",
+						"history"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
