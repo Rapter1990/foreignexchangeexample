@@ -1,7 +1,7 @@
 # Case Study - Foreign Exchange Example
 
 <p align="center">
-    <img src="screenshots/main.png" alt="Main Information" width="800" height="450">
+    <img src="screenshots/foreign_exchange_main_image.png" alt="Main Information" width="800" height="450">
 </p>
 
 ### 📖 Information
