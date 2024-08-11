@@ -83,7 +83,7 @@ public class ExchangeController {
                     @ApiResponse(responseCode = "400", description = "Invalid request format")
             }
     )
-    public ResponseEntity<ExchangeRateResponse> convertCurrency(@Valid @RequestBody final ExchangeRateRequest request) {
+    public ResponseEntity<ExchangeRateResponse> exchangeRate(@Valid @RequestBody final ExchangeRateRequest request) {
         ExchangeRate exchangeRate = exchangeRateService.exchangeRate(request);
         return ResponseEntity.ok(exchangeRateToExchangeRateResponseMapper.map(exchangeRate));
     }
@@ -106,7 +106,7 @@ public class ExchangeController {
                     @ApiResponse(responseCode = "400", description = "Invalid request format")
             }
     )
-    public ResponseEntity<ConvertResponse> exchangeRate(@Valid @RequestBody final ConvertRequest request) {
+    public ResponseEntity<ConvertResponse> convertCurrency(@Valid @RequestBody final ConvertRequest request) {
         Convert convertDto = currencyConversionService.convertCurrency(request);
         return ResponseEntity.ok(convertToConvertResponseMapper.map(convertDto));
     }
